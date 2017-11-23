@@ -4,17 +4,17 @@ import scala.util.parsing.combinator.JavaTokenParsers
 
 class Rules extends JavaTokenParsers{
 
-  def program: Parser[Any]= "{"~rep(dichiarazione)~" "~rep(stmt)~" }"
+  def program: Parser[Any]="{"~rep(dichiarazione)~rep(stmt)~"}"
 
   def stmt: Parser[Any]= opt(simp)~";"
 
-  def simp: Parser[Any]= pippo~asop~exp
+  def simp: Parser[Any]= identificatore~asop~exp
 
-  def dichiarazione: Parser[Any]="int"~pippo
+  def dichiarazione: Parser[Any]="int"~identificatore~";"
 
-  def exp: Parser[Any]="("~exp~")" | intconst | pippo | exp~binop~exp
+  def exp: Parser[Any]="("~exp~")" | intconst | identificatore | exp~binop~exp  //Non entro mai
 
-  def pippo: Parser[Any]="[A-Za-z]".r
+  def identificatore: Parser[Any]=rep("[A-Za-z]".r)
 
   def intconst: Parser[Any]="[0-9]".r~rep("[0-9]".r)
 
