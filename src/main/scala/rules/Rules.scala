@@ -12,7 +12,7 @@ class Rules extends JavaTokenParsers{
 
   def dichiarazione: Parser[Any]="int"~identificatore~";"
 
-  def exp: Parser[Any]="("~exp~")" | intconst | identificatore | exp~binop~exp  //Non entro mai
+  def exp: Parser[Any]="("~exp~")" | exp~binop~exp |  intconst | identificatore //causa uno stack overflow
 
   def identificatore: Parser[Any]=rep("[A-Za-z]".r)
 
