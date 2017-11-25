@@ -3,6 +3,7 @@ package GUI;
 import javafx.application.Application;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -19,7 +20,7 @@ public class Gui extends Application {
         primaryStage.setTitle("Analizzatore Sintattico");
         TextField program = new TextField();
         program.setPromptText("Inserisci il programma");
-        Accordion visual = new Accordion();
+        TreeView<String> visual = new TreeView<>();
 
         HBox layout= new HBox();
         BorderPane pannello = new BorderPane();
