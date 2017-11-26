@@ -14,6 +14,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.ParseProgram;
 
+import java.util.Random;
+
 
 public class Gui extends Application {
 
@@ -57,17 +59,11 @@ public class Gui extends Application {
             StackPane layout5=drawTree(result);
             layout5.getChildren().add(button2);
             Scene scene3 = new Scene(layout5,500,400);
-
-
-            risultato.setText(result);  //Sarà inutile
             window.setScene(scene3);
         });
-
         button2.setOnAction((ActionEvent event) -> {
             window.setScene(scene);
         });
-
-
     }
 
 
@@ -75,20 +71,19 @@ public class Gui extends Application {
         /*VBox layout = new VBox(30);
         layout.setPadding(new Insets(20,20,20,20));*/
 
-
         TreeItem<String> rootItem = new TreeItem<> ("Program");
         rootItem.setExpanded(true);
         TreeItem<String> item = new TreeItem<String> ("int a = 4");
         rootItem.getChildren().add(item);
         //Prove di disegno dell'albero
         char c1 = 'b';
-        for (int i = 1; i < 6; i++) {
-            TreeItem<String> item2 = new TreeItem<String> ("int " + c1+ " =" +i);
-            c1++;
+        for (int i = 1; i < 6; i++,c1++) {
+            Random z= new Random();
+            z.nextInt();
+            TreeItem<String> item2 = new TreeItem<String> ("int " + c1+ " =" +z.nextInt());
             item.getChildren().add(item2);
         }
         //Mi serve una funzione ricorsiva che esplori l'albero
-
         TreeView<String> tree = new TreeView<> (rootItem);
         StackPane root = new StackPane();
         root.getChildren().add(tree);
