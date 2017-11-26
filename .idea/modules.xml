@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/analizzatoresintattico2.iml" filepath="$PROJECT_DIR$/.idea/modules/analizzatoresintattico2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/analizzatoresintattico2-build.iml" filepath="$PROJECT_DIR$/.idea/modules/analizzatoresintattico2-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/AnalizzatoreSintattico3.iml" filepath="$PROJECT_DIR$/.idea/AnalizzatoreSintattico3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/analizzatoresintattico3.iml" filepath="$PROJECT_DIR$/.idea/modules/analizzatoresintattico3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/analizzatoresintattico3-build.iml" filepath="$PROJECT_DIR$/.idea/modules/analizzatoresintattico3-build.iml" />
     </modules>
   </component>
 </project>
