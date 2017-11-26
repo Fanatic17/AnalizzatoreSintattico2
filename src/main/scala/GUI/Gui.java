@@ -3,16 +3,20 @@ package GUI;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.ParseProgram;
 
-import java.lang.reflect.Array;
+import java.awt.*;
 
 public class Gui extends Application {
 
@@ -53,9 +57,9 @@ public class Gui extends Application {
             String result = (ParseProgram.parse(textArea.getText())).toString();
             //Metodo che sistema result
             //Metodo che disegna l'albero
-            VBox layout5=drawTree(result);
+            StackPane layout5=drawTree(result);
             layout5.getChildren().add(button2);
-            Scene scene3 = new Scene(layout5,500,300);
+            Scene scene3 = new Scene(layout5,500,400);
 
 
             risultato.setText(result);  //Sarà inutile
@@ -70,35 +74,27 @@ public class Gui extends Application {
     }
 
 
-
-    public VBox drawTree(String input){
-        VBox layout = new VBox(30);
-        layout.setPadding(new Insets(20,20,20,20));
-        Accordion accordion= new Accordion();
+    public StackPane drawTree(String input){
+        /*VBox layout = new VBox(30);
+        layout.setPadding(new Insets(20,20,20,20));*/
 
 
-        String[] s=input.split("[(]");
-        for(int i=0; i<s.length; i++){
-            String current = s[i];
-            System.out.println(current);
-            String[] min=current.split("List");
-            //TitledPane
-
-            for(int j=0; j<min.length;j++){
-
-                //Contenuto del Pane
-                System.out.println(min[j]);
-                switch(min[j]){
-                     default : {
-                        TitledPane temp= new TitledPane();
-                        temp.setText(min[j]);
-                        accordion.getPanes().add(temp);
-                    }
-
-                }
-            }
+        TreeItem<String> rootItem = new TreeItem<> ("Program");
+        rootItem.setExpanded(true);
+        TreeItem<String> item = new TreeItem<String> ("int a = 4");
+        rootItem.getChildren().add(item);
+        //Prove di disegno dell'albero
+        char c1 = 'b';
+        for (int i = 1; i < 6; i++) {
+            TreeItem<String> item2 = new TreeItem<String> ("int " + c1+ " =" +i);
+            c1++;
+            item.getChildren().add(item2);
         }
-        layout.getChildren().add(accordion);
-        return layout;
+        //Mi serve una funzione ricorsiva che esplori l'albero
+
+        TreeView<String> tree = new TreeView<> (rootItem);
+        StackPane root = new StackPane();
+        root.getChildren().add(tree);
+        return root;
     }
 }
