@@ -36,6 +36,5 @@ public class Gui extends Application {
 
         System.out.print(input);
 
-        launch(input);
     }
 }
