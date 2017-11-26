@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.ParseProgram;
@@ -29,6 +30,7 @@ public class Gui extends Application {
         Button button = new Button("OK");
         Button button2 = new Button("Indietro");
         Label label = new Label("Inserisci il Programma");
+        Label risultato= new Label();
 
         TextArea textArea = new TextArea();
         VBox layout3 = new VBox(30);
@@ -40,7 +42,7 @@ public class Gui extends Application {
         layout2.setPadding(new Insets(20,20,20,20));
         layout2.getChildren().addAll(label);
         layout3.getChildren().addAll(layout2,layout);
-        layout4.getChildren().add(button2);
+        layout4.getChildren().addAll(button2,risultato);
         Scene scene = new Scene(layout3,355,250);
         Scene scene2 = new Scene(layout4,500,300);
 
@@ -49,7 +51,15 @@ public class Gui extends Application {
 
         button.setOnAction((ActionEvent event) -> {
             String result = (ParseProgram.parse(textArea.getText())).toString();
-            window.setScene(scene2);
+            //Metodo che sistema result
+            //Metodo che disegna l'albero
+            VBox layout5=drawTree(result);
+            layout5.getChildren().add(button2);
+            Scene scene3 = new Scene(layout5,500,300);
+
+
+            risultato.setText(result);  //Sarà inutile
+            window.setScene(scene3);
         });
 
         button2.setOnAction((ActionEvent event) -> {
@@ -61,10 +71,34 @@ public class Gui extends Application {
 
 
 
-    public void printGUI(String input){
+    public VBox drawTree(String input){
+        VBox layout = new VBox(30);
+        layout.setPadding(new Insets(20,20,20,20));
+        Accordion accordion= new Accordion();
 
-        System.out.print(input);
 
+        String[] s=input.split("[(]");
+        for(int i=0; i<s.length; i++){
+            String current = s[i];
+            System.out.println(current);
+            String[] min=current.split("List");
+            //TitledPane
 
+            for(int j=0; j<min.length;j++){
+
+                //Contenuto del Pane
+                System.out.println(min[j]);
+                switch(min[j]){
+                     default : {
+                        TitledPane temp= new TitledPane();
+                        temp.setText(min[j]);
+                        accordion.getPanes().add(temp);
+                    }
+
+                }
+            }
+        }
+        layout.getChildren().add(accordion);
+        return layout;
     }
 }
